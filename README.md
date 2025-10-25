@@ -33,7 +33,7 @@ It leverages **OpenAI’s Agents SDK (GPT‑4)** with **multi-agent orchestratio
 
 Below is the system architecture used in Nutrition Copilot:
 
-![Multi-Agent Architecture](nutrition-copilot-agentic-chatbot/architecture/architecture.svg)
+![Multi-Agent Architecture](architecture/architecture.svg)
 
 The system follows a hierarchical multi-agent design, where specialized agents collaborate to generate reliable and context-aware responses.
 
