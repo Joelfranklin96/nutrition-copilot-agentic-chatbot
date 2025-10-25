@@ -10,8 +10,7 @@ from agents import (
     InputGuardrailTripwireTriggered,
     RunContextWrapper,
     Runner,
-    TResponseInputItem,
-    WebSearchTool
+    TResponseInputItem
 )
 from agents.mcp import MCPServerStreamableHttp
 
@@ -55,7 +54,7 @@ def calorie_lookup_tool(query: str, max_results: int = 3) -> str:
 exa_search_mcp = MCPServerStreamableHttp(
     name="Exa Search MCP",
     params={
-        "url": f"https://mcp.exa.ai/mcp?{os.environ.get("EXA_API_KEY")}",
+        "url": f"https://mcp.exa.ai/mcp?exaApiKey={os.environ.get('EXA_API_KEY')}",
         "timeout": 30,
     },
     client_session_timeout_seconds=30,
@@ -175,7 +174,7 @@ healthy_breakfast_planner_agent = Agent(
 
 calorie_calculator_tool = nutrition_agent.as_tool(
     tool_name="calorie-calculator",
-    tool_description="Use this tool to calculate the calories of a meal and it's ingredients",
+    tool_description="Use this tool to calculate the calories of a meal and its ingredients",
 )
 
 breakfast_planner_tool = healthy_breakfast_planner_agent.as_tool(
@@ -189,7 +188,7 @@ breakfast_price_checker_agent = Agent(
     
     Your task:
     • Receive breakfast meal data (with ingredients and calories)
-    • Use web search to find current, realistic prices for each ingredient
+    • Use MCP tools (e.g., Exa MCP) to find current, realistic prices for each ingredient
         - Look for grocery store prices or typical retail costs
         - Use average prices if there's variation
         - Specify the quantity you're pricing (e.g., "1 dozen eggs" not just "eggs")
@@ -203,7 +202,7 @@ breakfast_price_checker_agent = Agent(
     
     Be practical: focus on useful information, not decorative text.
     """,
-    tools=[WebSearchTool()],
+    mcp_servers=[exa_search_mcp]
 )
 
 breakfast_advisor = Agent(
