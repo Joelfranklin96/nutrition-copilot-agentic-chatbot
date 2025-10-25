@@ -29,9 +29,11 @@ wheels/
 # SQLite conversation history
 conversation_history*
 
-# Chainlit
-.chainlit/
+# Chainlit - Allow chatbot/.chainlit/config.toml but ignore cache
+/.chainlit/
 .files/
+chatbot/.chainlit/.langchain.db
+chatbot/.chainlit/chat_files/
 
 # IDE
 .vscode/
@@ -47,6 +49,5 @@ Thumbs.db
 # Logs
 *.log
 
-chatbot/.chainlit/.langchain.db
-chatbot/.chainlit/chat_files/
-chatbot/.files/
+# ChromaDB - Ignore database changes after initial commit
+chroma/*.sqlite3
