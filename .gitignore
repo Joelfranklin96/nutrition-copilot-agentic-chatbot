@@ -46,3 +46,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+chatbot/.chainlit/.langchain.db
+chatbot/.chainlit/chat_files/
+chatbot/.files/
